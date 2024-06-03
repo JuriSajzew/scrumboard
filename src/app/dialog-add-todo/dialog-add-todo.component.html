@@ -1,0 +1,31 @@
+<h2 mat-dialog-title></h2>
+<mat-dialog-content>
+    <div>
+        <mat-form-field>
+            <mat-label>title</mat-label>
+            <input matInput [(ngModel)]="todo.title">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field>
+            <mat-label>description</mat-label>
+            <input matInput [(ngModel)]="todo.description">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field>
+            <mat-label>Date</mat-label>
+            <input matInput [(ngModel)]="todo.date">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field>
+            <mat-label>Member</mat-label>
+            <input matInput [(ngModel)]="todo.member">
+        </mat-form-field>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button>Cancel</button>
+    <button mat-button cdkFocusInitial (click)="saveTodo()">Save</button>
+</mat-dialog-actions>

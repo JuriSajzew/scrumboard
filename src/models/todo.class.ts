@@ -3,12 +3,17 @@ export class Todo {
         this.state = 'Todo';
         this.title = '';
         this.description = '';
-        this.member = '';
+        this.priority = '';
+        this.author = '';
+        this.date = '';
+        this.dateline = new Date();
     }
 
     title: string;
     description: string;
-    date: number | undefined;
-    member: string;
+    date: string;
+    priority: string;
+    author: string;
     state: string;
+    dateline: Date;
 }

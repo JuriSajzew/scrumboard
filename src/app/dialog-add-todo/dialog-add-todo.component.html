@@ -2,26 +2,39 @@
 <mat-dialog-content>
     <div>
         <mat-form-field>
-            <mat-label>title</mat-label>
+            <mat-label>Title</mat-label>
             <input matInput [(ngModel)]="todo.title">
         </mat-form-field>
     </div>
     <div>
         <mat-form-field>
-            <mat-label>description</mat-label>
+            <mat-label>Description</mat-label>
             <input matInput [(ngModel)]="todo.description">
         </mat-form-field>
     </div>
     <div>
         <mat-form-field>
-            <mat-label>Date</mat-label>
-            <input matInput [(ngModel)]="todo.date">
+            <mat-label>Author</mat-label>
+            <input matInput [(ngModel)]="todo.author">
         </mat-form-field>
     </div>
     <div>
         <mat-form-field>
-            <mat-label>Member</mat-label>
-            <input matInput [(ngModel)]="todo.member">
+            <mat-label>Date</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="todo.dateline">
+            <mat-hint>YYYY-MM-DD</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field>
+            <mat-label>Priority</mat-label>
+            <mat-select [(ngModel)]="todo.priority">
+                <mat-option value="low">low</mat-option>
+                <mat-option value="medium">medium</mat-option>
+                <mat-option value="high">high</mat-option>
+            </mat-select>
         </mat-form-field>
     </div>
 </mat-dialog-content>

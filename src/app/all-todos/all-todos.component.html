@@ -1,0 +1,20 @@
+<mat-card *ngFor="let todo of todos" (click)="openCard()">
+    <mat-card-content>
+        <h3>Title:</h3> {{todo.title}}
+    </mat-card-content>
+    <mat-card-content>
+        <h3>Description:</h3> {{todo.description}}
+    </mat-card-content>
+    <mat-card-content>
+        <h3>Created at:</h3> {{todo.created_at}}
+    </mat-card-content>
+    <mat-card-content>
+        <h3>Dateline:</h3> {{todo.dateline}}
+    </mat-card-content>
+    <mat-card-content>
+        <h3>Priority:</h3> {{todo.priority}}
+    </mat-card-content>
+    <mat-card-content>
+        <h3>User:</h3> {{todo.author}}
+    </mat-card-content>
+</mat-card>

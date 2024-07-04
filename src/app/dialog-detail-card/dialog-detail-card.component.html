@@ -1,0 +1,19 @@
+<mat-card *ngIf="todo">
+    <mat-card-content>
+        <h3> {{todo.title}} </h3>
+    </mat-card-content>
+    <mat-card-content>
+        <h5> {{todo.description}} </h5>
+    </mat-card-content>
+    <mat-card-content>
+        {{todo.dateline}}
+    </mat-card-content>
+    <mat-card-content>
+        <h3>Priority:</h3> {{todo.priority}}
+    </mat-card-content>
+    <div class="example-button-container, editButton" (click)="editTodo(todo.todo_id)">
+        <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
+            <mat-icon>edit</mat-icon>
+        </button>
+    </div>
+</mat-card>

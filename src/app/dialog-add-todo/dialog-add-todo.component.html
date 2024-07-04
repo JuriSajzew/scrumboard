@@ -37,6 +37,12 @@
             </mat-select>
         </mat-form-field>
     </div>
+    <div>
+        <mat-form-field>
+            <mat-label>Subtask</mat-label>
+            <input matInput [(ngModel)]="todo.subtask">
+        </mat-form-field>
+    </div>
 </mat-dialog-content>
 <mat-dialog-actions>
     <button mat-button>Cancel</button>

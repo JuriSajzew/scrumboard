@@ -1,0 +1,43 @@
+<mat-card>
+    <mat-card-content>
+        <mat-form-field class="example-full-width">
+            <mat-label>Titel</mat-label>
+            <input matInput placeholder="Title" [(ngModel)]="todo.title">
+        </mat-form-field>
+    </mat-card-content>
+    <mat-card-content>
+        <mat-form-field class="example-full-width">
+            <mat-label>Description</mat-label>
+            <input matInput placeholder="Title" [(ngModel)]="todo.description">
+        </mat-form-field>
+    </mat-card-content>
+    <mat-card-content>
+        <mat-form-field class="example-full-width">
+            <mat-label>Date</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="todo.dateline">
+            <mat-hint>YYYY-MM-DD</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </mat-card-content>
+    <mat-card-content>
+        <mat-form-field class="example-full-width">
+            <mat-label>Priority</mat-label>
+            <mat-select [(ngModel)]="todo.priority">
+                <mat-option value="low">low</mat-option>
+                <mat-option value="medium">medium</mat-option>
+                <mat-option value="high">high</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </mat-card-content>
+    <div class="button-contain">
+        <div class="example-flex-container, button">
+            <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click)="deleteTodo()">
+                <mat-icon>delete</mat-icon>
+            </button>
+            <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click)="SaveTodo()">
+                <mat-icon>save</mat-icon>
+            </button>
+        </div>
+    </div>
+</mat-card>

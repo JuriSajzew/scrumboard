@@ -4,8 +4,10 @@ import { lastValueFrom } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
-
-
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { DialogDetailCardComponent } from '../dialog-detail-card/dialog-detail-card.component';
+import { TodoService } from '../todo.service';
 @Component({
   selector: 'app-all-todos',
   standalone: true,
@@ -19,26 +21,32 @@ import { MatCardModule } from '@angular/material/card';
   templateUrl: './all-todos.component.html',
   styleUrl: './all-todos.component.scss'
 })
+
 export class AllTodosComponent implements OnInit {
   todos: any = [];
+  todoId: any = [];
+  error = '';
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    public dialog: MatDialog,
+    private todoService: TodoService,
+  ) { }
 
-  baseUrl = 'http://localhost:8000'
 
   async ngOnInit() {
-    this.todos = await this.loadTodos();
-    console.log(this.todos);
+    try {
+      this.todos = await this.todoService.loadTodos();
+      console.log(this.todos);
+    } catch (e) {
+      this.error = 'Fehler beim Laden!';
+    }
   }
 
-  loadTodos() {
-    const url = this.baseUrl + '/todos/';
-    return lastValueFrom(this.http.get(url))
-  }
-
-  
-
-  openCard() {
-
+  openDetailTodo(selectedTodo: any, selectedTodo_id: any) {
+    const dialogRef = this.dialog.open(DialogDetailCardComponent);
+    dialogRef.componentInstance.todo = selectedTodo;
+    dialogRef.componentInstance.todo.todo_id = selectedTodo_id;
   }
 }

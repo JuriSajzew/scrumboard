@@ -16,5 +16,18 @@
   
 </div>
 <div>
+<!-- Container für "In Progress" -->
+<!--<div class="contain">
+  <h2>In Progress</h2>
+  <div *ngFor="let todo of allTodos">
+    <div *ngIf="todo.state === 'In Progress'">
+      <h3>{{ todo.title }}</h3>
+      <button mat-mini-fab color="primary" (click)="openDialog(todo)">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>-->
+
   <app-all-todos></app-all-todos>
 </div>

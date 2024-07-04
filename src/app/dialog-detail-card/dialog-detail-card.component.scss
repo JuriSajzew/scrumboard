@@ -1,0 +1,15 @@
+mat-card {
+    width: 400px;
+    height: 400px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    row-gap: 50px;
+    position: relative;
+
+    .editButton {
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+    }
+}

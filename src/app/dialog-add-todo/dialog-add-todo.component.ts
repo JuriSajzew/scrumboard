@@ -1,18 +1,20 @@
-import { Component, forwardRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { Todo } from '../../models/todo.class';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { CommonModule, getLocaleDateFormat } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { HttpClient } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
 import { environment } from '../../environments/environment.development';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
+import { DialogRef } from '@angular/cdk/dialog';
+import { TodoService } from '../todo.service';
 
 @Component({
   selector: 'app-dialog-add-todo',
@@ -31,21 +33,34 @@ import { MatSelectModule } from '@angular/material/select';
   templateUrl: './dialog-add-todo.component.html',
   styleUrl: './dialog-add-todo.component.scss',
   providers: [
-    provideNativeDateAdapter()
+    provideNativeDateAdapter(),
+    TodoService
   ],
 })
 export class DialogAddTodoComponent {
   state = 'Todo';
   todo = new Todo();
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    public dialog: MatDialog,
+    public dialogRef: MatDialogRef<DialogAddTodoComponent>,
+    private todoservice: TodoService,
+  ) { }
+
+  refresh(): void {
+    window.location.reload();
+  }
 
   url = environment.baseUrl;
 
-  saveTodo() {
+  async saveTodo() {
     console.log(this.todo);
     this.todo.state = this.state;
+    this.dialogRef.close();
     this.addTodo();
+    //this.refresh();
+    ;
   }
 
   addTodo() {
@@ -60,14 +75,13 @@ export class DialogAddTodoComponent {
       "description": this.todo.description,
       "author": this.todo.author,
       "dateline": newDateline,
-      "priority": this.todo.priority
+      "priority": this.todo.priority,
+      "state": this.todo.state,
+      "subtask":this.todo.subtask
     };
     console.log(newTodo)
     const url = this.url + '/todos/';
     return lastValueFrom(this.http.post(url, newTodo));
-
   }
-
-
-
 }
+

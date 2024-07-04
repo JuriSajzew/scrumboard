@@ -1,0 +1,28 @@
+mat-card {
+    width: 600px;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    mat-card-content,
+    mat-form-field {
+        width: 100%;
+    }
+
+    .button-contain {
+        position: absolute;
+        bottom: 30px;
+        right: 30px;
+        display: grid;
+        column-gap: 10px;
+
+        .button {
+            button {
+                cursor: pointer;
+                margin-left: 5px;
+                margin-right: 5px;
+            }
+        }
+    }
+}

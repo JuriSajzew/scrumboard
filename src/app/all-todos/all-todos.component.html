@@ -1,20 +1,18 @@
-<mat-card *ngFor="let todo of todos" (click)="openCard()">
+<h1>{{ error }}</h1>
+<mat-card *ngFor="let todo of todos" (click)="openDetailTodo(todo, todo.id)">
     <mat-card-content>
-        <h3>Title:</h3> {{todo.title}}
+        <h3> {{todo.title}}</h3>
     </mat-card-content>
     <mat-card-content>
-        <h3>Description:</h3> {{todo.description}}
+        {{todo.description}}
     </mat-card-content>
     <mat-card-content>
-        <h3>Created at:</h3> {{todo.created_at}}
+        {{todo.priority}}
     </mat-card-content>
-    <mat-card-content>
-        <h3>Dateline:</h3> {{todo.dateline}}
-    </mat-card-content>
-    <mat-card-content>
-        <h3>Priority:</h3> {{todo.priority}}
-    </mat-card-content>
-    <mat-card-content>
-        <h3>User:</h3> {{todo.author}}
+    <mat-card-content *ngIf="todo.subtasks?.length">
+        <h4>Subtasks:</h4>
+        <ul>
+            <li *ngFor="let subtask of todo.subtasks">{{ subtask.title }}</li>
+        </ul>
     </mat-card-content>
 </mat-card>

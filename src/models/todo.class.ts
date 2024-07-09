@@ -5,7 +5,6 @@ export class Todo {
         this.title = '';
         this.description = '';
         this.priority = '';
-        this.author = '';
         this.date = '';
         this.dateline = new Date();
         this.subtask = '';
@@ -16,7 +15,6 @@ export class Todo {
     description: string;
     date: string;
     priority: string;
-    author: string;
     state: string;
     dateline: Date;
     subtask: string;

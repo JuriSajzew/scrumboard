@@ -5,9 +5,9 @@ import { DialogEditComponent } from './dialog-edit/dialog-edit.component';
 import { LoginComponent } from './login/login.component';
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'login/', pathMatch: 'full' },
-    { path: 'login/', component: LoginComponent },
-    { path: 'todolist/', component: TodoAddComponent },
+    { path: '', redirectTo: 'login', pathMatch: 'full' },
+    { path: 'login', component: LoginComponent },
+    { path: 'todolist', component: TodoAddComponent },
     { path: 'todolist/todo_id', component: DialogEditComponent },
     { path: 'todo/:id', component: DialogDetailCardComponent }
 ];

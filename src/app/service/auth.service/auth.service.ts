@@ -18,4 +18,14 @@ export class AuthService {
     }
     return lastValueFrom(this.http.post(url, body));
   }
+
+  public CreateUser(username: string, email: string, password: string) {
+    const url = environment.baseUrl + '/register/';
+    const body = {
+      "username": username,
+      "email": email,
+      "password": password
+    }
+    return lastValueFrom(this.http.post(url, body));
+  }
 }

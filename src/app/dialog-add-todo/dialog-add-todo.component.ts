@@ -73,7 +73,6 @@ export class DialogAddTodoComponent {
     const newTodo = {
       "title": this.todo.title,
       "description": this.todo.description,
-      "author": this.todo.author,
       "dateline": newDateline,
       "priority": this.todo.priority,
       "state": this.todo.state,

@@ -1,0 +1,13 @@
+.signup {
+    width: 600px;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    mat-card {
+        width: 80%;
+        margin-bottom: 10px;
+    }
+}

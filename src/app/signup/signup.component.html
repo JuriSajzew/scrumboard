@@ -1,0 +1,44 @@
+<form action="" class="signup">
+    <mat-card appearance="outlined">
+        <mat-form-field class="example-full-width">
+            <mat-label>Username</mat-label>
+            <input type="text" matInput [formControl]="usernameFormControl" placeholder="Max_Mustermann" name="username"
+                [(ngModel)]="username">
+            @if (usernameFormControl.hasError('username') && !usernameFormControl.hasError('required')) {
+            <mat-error>Please enter a valid username address</mat-error>
+            }
+            @if (usernameFormControl.hasError('required')) {
+            <mat-error>Username is <strong>required</strong></mat-error>
+            }
+        </mat-form-field>
+    </mat-card>
+    <mat-card appearance="outlined">
+        <mat-form-field class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com" name="email"
+                [(ngModel)]="email">
+            @if (emailFormControl.hasError('email') && !emailFormControl.hasError('required')) {
+            <mat-error>Please enter a valid email address</mat-error>
+            }
+            @if (emailFormControl.hasError('required')) {
+            <mat-error>Email is <strong>required</strong></mat-error>
+            }
+        </mat-form-field>
+    </mat-card>
+    <mat-card appearance="outlined">
+        <mat-form-field class="example-full-width">
+            <mat-label>Password</mat-label>
+            <input type="text" matInput [formControl]="passwordFormControl" placeholder="12345" [(ngModel)]="password"
+                name="password">
+            @if (passwordFormControl.hasError('email') && !passwordFormControl.hasError('required')) {
+            <mat-error>Please enter a valid email address</mat-error>
+            }
+            @if (passwordFormControl.hasError('required')) {
+            <mat-error>Password is <strong>required</strong></mat-error>
+            }
+        </mat-form-field>
+    </mat-card>
+    <div class="example-button-row">
+        <button mat-flat-button (click)="saveUser()">Create user</button>
+    </div>
+</form>

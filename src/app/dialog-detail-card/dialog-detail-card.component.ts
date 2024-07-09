@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Todo } from '../../models/todo.class';
 import { MatIconModule } from '@angular/material/icon';
 import { DialogEditComponent } from '../dialog-edit/dialog-edit.component';
+import { Dialog, DialogRef } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-dialog-detail-card',
@@ -26,7 +27,7 @@ export class DialogDetailCardComponent {
   todo: Todo = new Todo();
   todoId: any = [];
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog, private dialogRef: DialogRef) { }
 
   baseUrl = 'http://127.0.0.1:8000';
 
@@ -34,5 +35,6 @@ export class DialogDetailCardComponent {
     const dialogref = this.dialog.open(DialogEditComponent, todo_id);
     dialogref.componentInstance.todo = this.todo;
     dialogref.componentInstance.todoId = todo_id;
+    this.dialogRef.close();
   }
 }

@@ -1,5 +1,23 @@
 <form (ngSubmit)="login()">
-  <input type="text" name="username" [(ngModel)]="username" required>
-  <input type="password" name="password" [(ngModel)]="password" required>
-  <button>Login</button>
+  <mat-card appearance="outlined" class="login-contain">
+    <h1>Login</h1>
+    <mat-card-content>
+      <input type="text" name="username" [(ngModel)]="username" required>
+    </mat-card-content>
+    <mat-card-content>
+      <input type="password" name="password" [(ngModel)]="password" required>
+    </mat-card-content>
+    <div class="button-contain">
+
+      <div class="example-button-row">
+        <button mat-flat-button>Login</button>
+      </div>
+    </div>
+  </mat-card>
 </form>
+<div class="signupButton">
+  <p>legen Sie einen Benutzer an!</p>
+  <div class="example-button-row">
+    <button mat-flat-button (click)="signUp()">Sign up</button>
+  </div>
+</div>

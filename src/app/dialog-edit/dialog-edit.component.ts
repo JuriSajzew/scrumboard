@@ -64,16 +64,17 @@ export class DialogEditComponent {
     const updateTodo = {
       "title": this.todo.title,
       "description": this.todo.description,
-      "author": this.todo.author,
       "dateline": newDateline,
       "priority": this.todo.priority
     };
     console.log('Update Daten', updateTodo);
 
     const url = `${this.apiUrl}/todos/${this.todoId}/`;
+    this.dialogRef.close()
     console.log('Anfrage URL:', url);
     // URL mit ID des Todos
     return lastValueFrom(this.http.patch(url, updateTodo));
+    
   }
 
   async deleteTodo() {

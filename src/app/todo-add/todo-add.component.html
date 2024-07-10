@@ -13,21 +13,81 @@
       </button>
     </div>
   </div>
-  
+
 </div>
-<div>
-<!-- Container für "In Progress" -->
-<!--<div class="contain">
-  <h2>In Progress</h2>
-  <div *ngFor="let todo of allTodos">
-    <div *ngIf="todo.state === 'In Progress'">
-      <h3>{{ todo.title }}</h3>
-      <button mat-mini-fab color="primary" (click)="openDialog(todo)">
-        <mat-icon>add</mat-icon>
-      </button>
+<div class="allTodoContain">
+  <!-- Container für "Todo" -->
+  <div class="contain">
+    <div *ngFor="let todo of allTodos">
+      <div *ngIf="todo.state === 'Todo'">
+        <mat-card (click)="openDetailTodo(todo, todo.id)">
+          <mat-card-content>
+              <h3> {{todo.title}}</h3>
+          </mat-card-content>
+          <mat-card-content>
+              {{todo.description}}
+          </mat-card-content>
+          <mat-card-content>
+              {{todo.priority}}
+          </mat-card-content>
+      </mat-card>
+      </div>
+    </div>
+
+  </div><!-- Container für "Do today" -->
+  <div class="contain">
+    <div *ngFor="let todo of allTodos">
+      <div *ngIf="todo.state === 'Do today'">
+        <mat-card (click)="openDetailTodo(todo, todo.id)">
+          <mat-card-content>
+              <h3> {{todo.title}}</h3>
+          </mat-card-content>
+          <mat-card-content>
+              {{todo.description}}
+          </mat-card-content>
+          <mat-card-content>
+              {{todo.priority}}
+          </mat-card-content>
+      </mat-card>
+      </div>
     </div>
   </div>
-</div>-->
-
-  <app-all-todos></app-all-todos>
+  <!-- Container für "In Progress" -->
+  <div class="contain">
+    <div *ngFor="let todo of allTodos">
+      <div *ngIf="todo.state === 'In progress'">
+        <mat-card (click)="openDetailTodo(todo, todo.id)">
+          <mat-card-content>
+              <h3> {{todo.title}}</h3>
+          </mat-card-content>
+          <mat-card-content>
+              {{todo.description}}
+          </mat-card-content>
+          <mat-card-content>
+              {{todo.priority}}
+          </mat-card-content>
+      </mat-card>
+      </div>
+    </div>
+  </div>
+  <!-- Container für "Done" -->
+  <div class="contain">
+    <div *ngFor="let todo of allTodos">
+      <div *ngIf="todo.state === 'Done'">
+        <mat-card (click)="openDetailTodo(todo, todo.id)">
+          <mat-card-content>
+              <h3> {{todo.title}}</h3>
+          </mat-card-content>
+          <mat-card-content>
+              {{todo.description}}
+          </mat-card-content>
+          <mat-card-content>
+              {{todo.priority}}
+          </mat-card-content>
+      </mat-card>
+      </div>
+    </div>
+  </div>
+  
+ <!-- <app-all-todos></app-all-todos>-->
 </div>

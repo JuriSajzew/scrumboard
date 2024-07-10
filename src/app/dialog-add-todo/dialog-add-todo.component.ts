@@ -59,8 +59,7 @@ export class DialogAddTodoComponent {
     this.todo.state = this.state;
     this.dialogRef.close();
     this.addTodo();
-    //this.refresh();
-    ;
+    window.location.reload();
   }
 
   addTodo() {
@@ -76,7 +75,6 @@ export class DialogAddTodoComponent {
       "dateline": newDateline,
       "priority": this.todo.priority,
       "state": this.todo.state,
-      "subtask":this.todo.subtask
     };
     console.log(newTodo)
     const url = this.url + '/todos/';

@@ -9,10 +9,4 @@
     <mat-card-content>
         {{todo.priority}}
     </mat-card-content>
-    <mat-card-content *ngIf="todo.subtasks?.length">
-        <h4>Subtasks:</h4>
-        <ul>
-            <li *ngFor="let subtask of todo.subtasks">{{ subtask.title }}</li>
-        </ul>
-    </mat-card-content>
 </mat-card>

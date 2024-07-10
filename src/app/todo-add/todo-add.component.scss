@@ -14,3 +14,20 @@
         justify-content: space-around;
     }
 }
+
+.allTodoContain {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+mat-card {
+    width: 190px;
+    margin-bottom: 20px;
+    &:hover{
+        cursor: pointer;
+    }
+}
+

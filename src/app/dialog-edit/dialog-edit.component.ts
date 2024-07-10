@@ -65,7 +65,8 @@ export class DialogEditComponent {
       "title": this.todo.title,
       "description": this.todo.description,
       "dateline": newDateline,
-      "priority": this.todo.priority
+      "priority": this.todo.priority,
+      "state":this.todo.state
     };
     console.log('Update Daten', updateTodo);
 
@@ -74,7 +75,6 @@ export class DialogEditComponent {
     console.log('Anfrage URL:', url);
     // URL mit ID des Todos
     return lastValueFrom(this.http.patch(url, updateTodo));
-    
   }
 
   async deleteTodo() {
@@ -85,6 +85,7 @@ export class DialogEditComponent {
       await lastValueFrom(this.http.delete(url));
       console.log('Löschung erfolgreich');
       this.dialogRef.close();
+      window.location.reload();
     } catch (error) {
       console.error('Fehler beim Löschen des Todos:', error);
     }

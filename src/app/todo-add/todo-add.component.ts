@@ -9,6 +9,8 @@ import { DialogAddTodoComponent } from '../dialog-add-todo/dialog-add-todo.compo
 import { AllTodosComponent } from '../all-todos/all-todos.component';
 import { TodoService } from '../todo.service';
 import { HttpClientModule } from '@angular/common/http';
+import { MatCardModule } from '@angular/material/card';
+import { DialogDetailCardComponent } from '../dialog-detail-card/dialog-detail-card.component';
 
 @Component({
   selector: 'app-todo-add',
@@ -22,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatDividerModule,
     MatDialogModule,
     HttpClientModule,
+    MatCardModule,
   ],
   templateUrl: './todo-add.component.html',
   styleUrl: './todo-add.component.scss',
@@ -62,6 +65,12 @@ export class TodoAddComponent implements OnInit {
   openDialog(todo: any) {
     const dialogref = this.dialog.open(DialogAddTodoComponent);
     dialogref.componentInstance.state = todo.name;
+  }
+
+  openDetailTodo(selectedTodo: any, selectedTodo_id: any) {
+    const dialogRef = this.dialog.open(DialogDetailCardComponent);
+    dialogRef.componentInstance.todo = selectedTodo;
+    dialogRef.componentInstance.todo.todo_id = selectedTodo_id;
   }
 }
 

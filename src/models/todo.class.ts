@@ -7,7 +7,6 @@ export class Todo {
         this.priority = '';
         this.date = '';
         this.dateline = new Date();
-        this.subtask = '';
     }
 
     todo_id: number;
@@ -17,5 +16,4 @@ export class Todo {
     priority: string;
     state: string;
     dateline: Date;
-    subtask: string;
 }

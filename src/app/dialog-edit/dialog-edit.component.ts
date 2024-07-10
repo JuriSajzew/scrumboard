@@ -56,31 +56,79 @@ export class DialogEditComponent {
   }
 
   addTodo() {
-    const day = this.todo.dateline.getDate();
-    const year = this.todo.dateline.getFullYear();
-    const month = this.todo.dateline.getMonth() + 1; // Monat ist 0-basiert
-    const newDateline = `${year}-${month}-${day}`;
+    const dateline = this.parseDateline();
 
-    const updateTodo = {
-      "title": this.todo.title,
-      "description": this.todo.description,
-      "dateline": newDateline,
-      "priority": this.todo.priority,
-      "state":this.todo.state
-    };
-    console.log('Update Daten', updateTodo);
+    if (!dateline) {
+      return; // Error handling bereits in parseDateline() durchgeführt
+    }
 
+    const newDateline = this.formatDateline(dateline);
+    const updateTodo = this.createUpdateTodoObject(newDateline);
     const url = `${this.apiUrl}/todos/${this.todoId}/`;
-    this.dialogRef.close()
+
+    this.closeDialog();
+
+    console.log('Update Daten', updateTodo);
     console.log('Anfrage URL:', url);
-    // URL mit ID des Todos
+
     return lastValueFrom(this.http.patch(url, updateTodo));
   }
 
+  private parseDateline(): Date | null {
+    let dateline: Date;
+
+    if (typeof this.todo.dateline === 'string') {
+      console.log('dateline ist ein String:', this.todo.dateline);
+      dateline = new Date(this.todo.dateline);
+    } else if (this.todo.dateline instanceof Date) {
+      console.log('dateline ist ein Date-Objekt:', this.todo.dateline);
+      dateline = this.todo.dateline;
+    } else {
+      console.error('dateline hat ein unerwartetes Format:', this.todo.dateline);
+      return null;
+    }
+
+    if (isNaN(dateline.getTime())) {
+      console.error('dateline ist kein gültiges Datum:', dateline);
+      return null;
+    }
+
+    return dateline;
+  }
+/**
+ * Formats a date into a string in the format 'YYYY-MM-DD'.
+ * @param dateline The date to be formatted.
+ * @returns The formatted date string.
+ */
+  private formatDateline(dateline: Date): string {
+    const day = dateline.getDate().toString().padStart(2, '0');
+    const year = dateline.getFullYear();
+    const month = (dateline.getMonth() + 1).toString().padStart(2, '0'); // Monat ist 0-basiert
+    return `${year}-${month}-${day}`;
+  }
+
+  private createUpdateTodoObject(newDateline: string) {
+    return {
+      title: this.todo.title,
+      description: this.todo.description,
+      dateline: newDateline,
+      priority: this.todo.priority,
+      state: this.todo.state
+    };
+  }
+  /**
+  *Closes the current dialogue window.
+  */
+  private closeDialog() {
+    this.dialogRef.close();
+  }
+/**
+ * Deleting the todo card
+ */
   async deleteTodo() {
     const url = `${this.apiUrl}/todos/${this.todoId}/`;
     console.log('Delete Anfrage URL:', url);
-    
+
     try {
       await lastValueFrom(this.http.delete(url));
       console.log('Löschung erfolgreich');
